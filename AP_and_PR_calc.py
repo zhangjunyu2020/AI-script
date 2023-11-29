@@ -272,8 +272,8 @@ if __name__ == "__main__":
     predict_path = f"{dataset_path}\\img_cvlm_predict\\{{}}.xml"
     det_path = f"{dataset_path}\\det_rst_{{}}.txt"
     anno_path = f"{dataset_path}\\img_ground_truth\\{{}}.xml"
-    image_set_file = f"{dataset_path}\\test.txt"
-    cache_dir = dataset_path
+    image_name_set_path = f"{dataset_path}\\test.txt"
+    cache_path = dataset_path
 
     predict_list_xml = os.listdir(f"{dataset_path}\\img_cvlm_predict")
     candidate_class_list = list()
@@ -293,7 +293,7 @@ if __name__ == "__main__":
             f.write(f"{item[0]} {item[1]} {item[2]} {item[3]} {item[4]} {item[5]}\n")
     f.close()
 
-    recalls, precisions, ap = voc_eval(det_path, anno_path, image_set_file, classname, cache_dir)
+    recalls, precisions, ap = voc_eval(det_path, anno_path, image_name_set_path, classname, cache_path)
     print(f"Class {classname} AP: {str(ap)[:8]}")
 
     # P-R Curve
